@@ -10,6 +10,20 @@
 * Helm installed
 * Cluster admin access
 
+# Prometheus
+
+```
+export PROM_POD=$(kubectl get pods -n observability -l "app.kubernetes.io/name=prometheus,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
+kubectl port-forward -n observability $PROM_POD 9090:9090
+```
+
+# Grafana
+
+```
+export GRAFANA_POD=$(kubectl get pods -n observability -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=grafana" -o jsonpath="{.items[0].metadata.name}")
+kubectl port-forward -n observability $GRAFANA_POD 3000:3000
+```
+
 ---
 
 ## 🧱 Step 1: Install Calico with Tigera Operator
