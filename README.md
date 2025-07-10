@@ -245,6 +245,13 @@ calicoctl delete wep <name>
 
 ---
 
+---
+Extra
+## To get Felix restarts/hr (top 50)
+```
+kubectl delete pod -n calico-system -l k8s-app=calico-node
+```
+
 ## 🎉 Done!
 
 You’ve now set up a full Calico monitoring pipeline from scratch:
