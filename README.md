@@ -10,14 +10,24 @@
 * Helm installed
 * Cluster admin access
 
-# Prometheus
+## Prometheus Install
+```
+helm upgrade -i prometheus prometheus-community/prometheus -f _config/prometheus.yml -n observability
+```
+
+## Grafana Install
+```
+helm upgrade -i grafana grafana/grafana -f _config/grafana.yaml -n observability
+```
+
+# Prometheus PortForward
 
 ```
 export PROM_POD=$(kubectl get pods -n observability -l "app.kubernetes.io/name=prometheus,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
 kubectl port-forward -n observability $PROM_POD 9090:9090
 ```
 
-# Grafana
+# Grafana PortForward
 
 ```
 export GRAFANA_POD=$(kubectl get pods -n observability -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=grafana" -o jsonpath="{.items[0].metadata.name}")
